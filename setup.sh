@@ -25,4 +25,5 @@ yay -S \
   vulkan-radeon \
   yazi \
   mpv \
-  mpvpaper
+  mpvpaper \
+  neovide
