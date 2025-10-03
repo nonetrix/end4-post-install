@@ -27,3 +27,7 @@ yay -S \
   mpv \
   mpvpaper \
   neovide
+
+curl -fsSL \
+  https://raw.githubusercontent.com/nonetrix/end4-post-install/refs/heads/main/mimeapps.list \
+  -o "$HOME/.config/mimeapps.list"
