@@ -1,5 +1,6 @@
 #!/bin/bash
 
+# Install additional programs
 yay -S \
   ark \
   base-devel \
@@ -28,6 +29,10 @@ yay -S \
   mpvpaper \
   neovide
 
+# Set default apps
 curl -fsSL \
   https://raw.githubusercontent.com/nonetrix/end4-post-install/refs/heads/main/mimeapps.list \
   -o "$HOME/.config/mimeapps.list"
+
+# Install Neovim configs
+git clone https://github.com/NvChad/starter ~/.config/nvim
