@@ -27,7 +27,8 @@ yay -S --noconfirm \
   yazi \
   mpv \
   mpvpaper \
-  neovide
+  neovide \
+  konsole
 
 # Set default apps
 curl -fsSL \
