@@ -39,3 +39,11 @@ curl -fsSL \
 
 # Install Neovim configs
 git clone https://github.com/NvChad/starter ~/.config/nvim
+
+# Patch Kitty configs
+if ! grep -q "background_opacity 0.9" ~/.config/kitty/kitty.conf; then
+  echo "background_opacity 0.9" >> ~/.config/kitty/kitty.conf
+  echo "Added 'background_opacity 0.9' to kitty.conf"
+else
+  echo "'background_opacity 0.9' already exists in kitty.conf"
+fi
