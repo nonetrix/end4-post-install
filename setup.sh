@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Install additional programs
-yay -S \
+yay -S --noconfirm \
   ark \
   base-devel \
   btop \
