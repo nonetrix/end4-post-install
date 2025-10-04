@@ -28,7 +28,9 @@ yay -S --noconfirm \
   mpv \
   mpvpaper \
   neovide \
-  konsole
+  konsole \
+  zathura \
+  zathura-pdf-mupdf
 
 # Set default apps
 curl -fsSL \
