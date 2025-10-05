@@ -1,6 +1,22 @@
 #!/bin/bash
 
-# Install additional programs
+#==============================================================================
+# CONFIGURATION VARIABLES
+#
+# All file paths and patch identifiers are defined here for easy management.
+#==============================================================================
+HYPR_KEYBIND_CONFIG="$HOME/.config/hypr/hyprland/keybinds.conf"
+HYPR_GENERAL_CONFIG="$HOME/.config/hypr/hyprland/general.conf"
+KITTY_CONFIG="$HOME/.config/kitty/kitty.conf"
+MIMEAPPS_CONFIG="$HOME/.config/mimeapps.list"
+
+VIM_KEYBIND_PATCH_ID="# VIM-PATCH-APPLIED"
+MONITOR_SETUP_PATCH_ID="# MONITOR-SETUP-APPLIED"
+
+#==============================================================================
+# STAGE 1: INSTALL ADDITIONAL PROGRAMS
+#==============================================================================
+echo "--- Installing packages... ---"
 yay -S --noconfirm \
   ark \
   base-devel \
@@ -9,9 +25,13 @@ yay -S --noconfirm \
   fzf \
   git \
   imv \
+  konsole \
   krita \
   llama.cpp-hip \
+  mpv \
+  mpvpaper \
   nano \
+  neovide \
   neovim \
   noto-fonts-cjk \
   noto-fonts-emoji \
@@ -25,43 +45,45 @@ yay -S --noconfirm \
   steam \
   vulkan-radeon \
   yazi \
-  mpv \
-  mpvpaper \
-  neovide \
-  konsole \
   zathura \
   zathura-pdf-mupdf
 
-# Set default apps
+#==============================================================================
+# STAGE 2: SET DEFAULT APPLICATIONS
+#==============================================================================
+echo "--- Setting default applications... ---"
 curl -fsSL \
   https://raw.githubusercontent.com/nonetrix/end4-post-install/refs/heads/main/mimeapps.list \
-  -o "$HOME/.config/mimeapps.list"
+  -o "$MIMEAPPS_CONFIG"
 
-# Install Neovim configs
+#==============================================================================
+# STAGE 3: INSTALL NEOVIM CONFIGURATION
+#==============================================================================
+echo "--- Installing Neovim configuration... ---"
 git clone https://github.com/NvChad/starter ~/.config/nvim
 
-# Patch Kitty configs
-if ! grep -q "background_opacity 0.9" ~/.config/kitty/kitty.conf; then
-  echo "background_opacity 0.9" >> ~/.config/kitty/kitty.conf
+#==============================================================================
+# STAGE 4: PATCH KITTY CONFIGURATION
+#==============================================================================
+echo "--- Patching Kitty configuration... ---"
+if ! grep -q "background_opacity 0.9" "$KITTY_CONFIG"; then
+  echo "background_opacity 0.9" >> "$KITTY_CONFIG"
   echo "Added 'background_opacity 0.9' to kitty.conf"
 else
   echo "'background_opacity 0.9' already exists in kitty.conf"
 fi
 
-# Use Vim bindings for window stuff
-KEYBIND_CONFIG_FILE="$HOME/.config/hypr/hyprland/keybinds.conf"
-# A unique comment to check if the patch has already been applied
-PATCH_COMMENT="# VIM-PATCH-APPLIED"
-
-# Check if the file is already patched by grepping for the comment
-if grep -q "$PATCH_COMMENT" "$KEYBIND_CONFIG_FILE"; then
+#==============================================================================
+# STAGE 5: APPLY VIM KEYBINDS FOR HYPRLAND
+#==============================================================================
+echo "--- Applying Vim keybinds for Hyprland... ---"
+# Check if the file is already patched by grepping for the patch identifier
+if grep -q "$VIM_KEYBIND_PATCH_ID" "$HYPR_KEYBIND_CONFIG"; then
     echo "Vim keybind patch is already applied. No changes were made."
 else
     echo "Applying Vim keybind patch..."
-    # Append a block that first unbinds conflicting keys,
-    # then rebinds their original actions elsewhere,
-    # and finally sets up the new vim-style keybindings.
-    cat <<EOF >> "$KEYBIND_CONFIG_FILE"
+    # Append the keybinding configuration
+    cat <<EOF >> "$HYPR_KEYBIND_CONFIG"
 # VIM-PATCH-APPLIED
 # This block was added by a script to enable Vim-style window movement.
 
@@ -93,18 +115,17 @@ EOF
     echo "Patch applied successfully. Please reload Hyprland for changes to take effect."
 fi
 
-# Path to the configuration file
-GENERAL_CONFIG_FILE="$HOME/.config/hypr/hyprland/general.conf"
-# A unique comment to check if the patch has already been applied
-MONITOR_PATCH_COMMENT="# MONITOR-SETUP-APPLIED"
-
-# Check if the file is already patched
-if grep -q "$MONITOR_PATCH_COMMENT" "$GENERAL_CONFIG_FILE"; then
+#==============================================================================
+# STAGE 6: APPLY MONITOR SETUP FOR HYPRLAND
+#==============================================================================
+echo "--- Applying monitor setup for Hyprland... ---"
+# Check if the file is already patched by grepping for the patch identifier
+if grep -q "$MONITOR_SETUP_PATCH_ID" "$HYPR_GENERAL_CONFIG"; then
     echo "Monitor setup is already applied. No changes were made."
 else
     echo "Applying monitor setup..."
     # Append the monitor configuration block to the end of the file
-    cat <<EOF >> "$GENERAL_CONFIG_FILE"
+    cat <<EOF >> "$HYPR_GENERAL_CONFIG"
 
 # MONITOR-SETUP-APPLIED
 # The following lines were added by a script to configure the dual monitor layout.
@@ -113,3 +134,5 @@ monitor=DP-3,1920x1200@60,1920x0,1
 EOF
     echo "Monitor configuration applied successfully."
 fi
+
+echo "--- Script finished. ---"
