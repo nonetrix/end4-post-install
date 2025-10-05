@@ -92,3 +92,24 @@ bind = Super+Shift, l, movewindow, r
 EOF
     echo "Patch applied successfully. Please reload Hyprland for changes to take effect."
 fi
+
+# Path to the configuration file
+GENERAL_CONFIG_FILE="$HOME/.config/hypr/hyprland/general.conf"
+# A unique comment to check if the patch has already been applied
+MONITOR_PATCH_COMMENT="# MONITOR-SETUP-APPLIED"
+
+# Check if the file is already patched
+if grep -q "$MONITOR_PATCH_COMMENT" "$GENERAL_CONFIG_FILE"; then
+    echo "Monitor setup is already applied. No changes were made."
+else
+    echo "Applying monitor setup..."
+    # Append the monitor configuration block to the end of the file
+    cat <<EOF >> "$GENERAL_CONFIG_FILE"
+
+# MONITOR-SETUP-APPLIED
+# The following lines were added by a script to configure the dual monitor layout.
+monitor=DP-1,1920x1080@165,0x0,1
+monitor=DP-3,1920x1200@60,1920x0,1
+EOF
+    echo "Monitor configuration applied successfully."
+fi
