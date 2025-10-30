@@ -26,7 +26,7 @@ yay -S --noconfirm \
   git \
   imv \
   konsole \
-  krita \
+  gimp \
   llama.cpp-hip \
   mpv \
   mpvpaper \
@@ -40,11 +40,14 @@ yay -S --noconfirm \
   obs-studio \
   ollama-rocm \
   prismlauncher \
+  proton-vpn-gtk-app \
   protonup-qt-bin \
   spotify \
   steam \
   vulkan-radeon \
   yazi \
+  cava \
+  fastfetch \
   zathura \
   zathura-pdf-mupdf
 
