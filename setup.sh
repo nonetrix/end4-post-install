@@ -46,6 +46,7 @@ yay -S --noconfirm \
   steam \
   vulkan-radeon \
   yazi \
+  ffmpegthumbs \
   cava \
   fastfetch \
   zathura \
