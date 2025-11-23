@@ -24,7 +24,7 @@ yay -S --noconfirm \
   brave-bin \
   fzf \
   git \
-  imv \
+  qview \
   konsole \
   gimp \
   llama.cpp-hip \
