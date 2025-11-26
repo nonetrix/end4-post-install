@@ -56,12 +56,15 @@ yay -S --noconfirm \
   zathura-pdf-mupdf
 
 #==============================================================================
-# STAGE 2: SET DEFAULT APPLICATIONS
+# STAGE 2: SET DEFAULT APPLICATIONS AND COPY SCRIPTS
 #==============================================================================
-echo "--- Setting default applications... ---"
-curl -fsSL \
-  https://raw.githubusercontent.com/nonetrix/end4-post-install/refs/heads/main/mimeapps.list \
-  -o "$MIMEAPPS_CONFIG"
+echo "--- Setting default applications and copying scripts... ---"
+# Copy mimeapps.list, assuming the repo is cloned.
+cp mimeapps.list "$MIMEAPPS_CONFIG"
+
+# Copy shell scripts to ~/.local/bin
+mkdir -p ~/.local/bin
+cp -r shell/* ~/.local/bin/
 
 #==============================================================================
 # STAGE 3: INSTALL NEOVIM CONFIGURATION
