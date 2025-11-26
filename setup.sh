@@ -9,9 +9,11 @@ HYPR_KEYBIND_CONFIG="$HOME/.config/hypr/hyprland/keybinds.conf"
 HYPR_GENERAL_CONFIG="$HOME/.config/hypr/hyprland/general.conf"
 KITTY_CONFIG="$HOME/.config/kitty/kitty.conf"
 MIMEAPPS_CONFIG="$HOME/.config/mimeapps.list"
+FISH_CONFIG="$HOME/.config/fish/config.fish"
 
 VIM_KEYBIND_PATCH_ID="# VIM-PATCH-APPLIED"
 MONITOR_SETUP_PATCH_ID="# MONITOR-SETUP-APPLIED"
+FISH_PATCH_ID="# FISH-PATCH-APPLIED"
 
 #==============================================================================
 # STAGE 1: INSTALL ADDITIONAL PROGRAMS
@@ -138,6 +140,19 @@ monitor=DP-1,1920x1080@165,0x0,1,vrr,0
 monitor=DP-3,1920x1200@60,1920x0,1
 EOF
     echo "Monitor configuration applied successfully."
+fi
+
+echo "--- Patching Fish configuration... ---"
+if grep -q "$FISH_PATCH_ID" "$FISH_CONFIG"; then
+    echo "Fish config already patched."
+else
+    cat <<EOF >> "$FISH_CONFIG"
+
+$FISH_PATCH_ID
+set -U fish_user_paths $fish_user_paths ~/.local/bin
+fastfetch
+EOF
+    echo "Fish config patched."
 fi
 
 echo "--- Script finished. ---"
