@@ -1,0 +1,10 @@
+#!/bin/bash
+
+# File location
+OUTFILE="/tmp/weather.gif"
+
+# Download the radar loop
+wget -O "$OUTFILE" "https://radar.weather.gov/ridge/standard/SOUTHEAST_loop.gif"
+
+# Open with qview
+qview "$OUTFILE"
