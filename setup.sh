@@ -23,7 +23,7 @@ yay -S --noconfirm \
   ark \
   base-devel \
   btop \
-  mission-center \
+  plasma-systemmonitor \
   brave-bin \
   fzf \
   git \
