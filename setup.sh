@@ -55,7 +55,8 @@ yay -S --noconfirm \
   cava \
   fastfetch \
   zathura \
-  zathura-pdf-mupdf
+  zathura-pdf-mupdf \
+  sillytavern-git
 
   xdg-user-dirs-update --force
 
