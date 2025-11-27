@@ -40,6 +40,7 @@ yay -S --noconfirm \
   noto-fonts-cjk \
   noto-fonts-emoji \
   noto-fonts-extra \
+  xdg-user-dirs \
   npm \
   obs-studio \
   ollama-rocm \
@@ -55,6 +56,8 @@ yay -S --noconfirm \
   fastfetch \
   zathura \
   zathura-pdf-mupdf
+
+  xdg-user-dirs-update --force
 
 #==============================================================================
 # STAGE 2: SET DEFAULT APPLICATIONS AND COPY SCRIPTS
