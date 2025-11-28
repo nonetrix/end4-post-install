@@ -32,6 +32,7 @@ yay -S --noconfirm \
   gimp \
   llama.cpp-hip \
   mpv \
+  yt-dlp \
   haruna \
   mpvpaper \
   nano \
