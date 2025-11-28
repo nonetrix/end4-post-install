@@ -164,4 +164,7 @@ EOF
     echo "Fish config patched."
 fi
 
+echo "--- Installing AdBlock hosts... ---"
+sudo sh -c 'curl -fsSL https://raw.githubusercontent.com/StevenBlack/hosts/master/alternates/gambling/hosts -o /etc/hosts'
+
 echo "--- Script finished. ---"
