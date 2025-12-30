@@ -10,6 +10,7 @@ video/avi=org.kde.haruna.desktop
 video/flv=org.kde.haruna.desktop
 video/mov=org.kde.haruna.desktop
 video/m4v=org.kde.haruna.desktop
+video/rm=org.kde.haruna.desktop
 audio/mp3=org.kde.haruna.desktop
 audio/opus=org.kde.haruna.desktop
 audio/ogg=org.kde.haruna.desktop
